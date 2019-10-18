@@ -6,29 +6,44 @@
 /*   By: froussel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 15:51:13 by froussel          #+#    #+#             */
-/*   Updated: 2019/10/18 10:38:16 by froussel         ###   ########.fr       */
+/*   Updated: 2019/10/18 14:03:46 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void*), void (*del)(void *))
+static t_list	*clean_lst(t_list *lst, void (*del)(void*))
+{
+	t_list	*cur;
+	t_list	*next;
+
+	cur = lst;
+	while (cur)
+	{
+		next = cur->next;
+		ft_lstdelone(cur, del);
+		cur = next;
+	}
+	return (lst);
+}
+
+t_list			*ft_lstmap(t_list *lst, void *(*f)(void*), void (*del)(void *))
 {
 	t_list	*new;
 	t_list	*next;
 	t_list	*beg;
 
-	if (!lst || !f)
+	if (!lst || !f || !del)
 		return (NULL);
-	new = ft_lstnew((*f)(lst->content));
+	if (!(new = ft_lstnew((*f)(lst->content))))
+		return (new);
 	beg = new;
 	lst = lst->next;
 	while (lst)
 	{
 		next = lst->next;
-		if (!(*f)(lst->content))
-			(*del)(lst->content);
-		new->next = ft_lstnew(lst->content);
+		if (!(new->next = ft_lstnew((*f)(lst->content))))
+			return (clean_lst(beg, del));
 		lst = next;
 	}
 	return (beg);
