@@ -6,7 +6,7 @@
 /*   By: froussel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 15:41:05 by froussel          #+#    #+#             */
-/*   Updated: 2019/10/12 11:27:06 by froussel         ###   ########.fr       */
+/*   Updated: 2019/10/17 17:47:12 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,6 @@ void			ft_lstadd_back(t_list **alst, t_list *new);
 void			ft_lstdelone(t_list *lst, void (*del)(void*));
 void			ft_lstclear(t_list **lst, void (*del)(void*));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
-t_list			*ft_lstmap(t_list *lst, void *(*f)(void*));
+t_list			*ft_lstmap(t_list *lst, void *(*f)(void*), void (*del)(void *));
 
 #endif
