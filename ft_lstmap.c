@@ -6,7 +6,7 @@
 /*   By: froussel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 15:51:13 by froussel          #+#    #+#             */
-/*   Updated: 2019/10/19 12:59:33 by froussel         ###   ########.fr       */
+/*   Updated: 2019/10/19 13:09:27 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static t_list	*clean_lst(t_list *lst, void (*del)(void*))
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void*), void (*del)(void *))
 {
 	t_list	*new;
-	t_list	*next;
 	t_list	*beg;
 
 	if (!lst || !f || !del)
