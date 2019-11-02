@@ -26,7 +26,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (!(ps = malloc(sizeof(*ps) * (len + 1))))
 		return (0);
 	i = 0;
-	printf("len=%zu\n", len);
 	while (len-- > 0 && s[start + i])
 	{
 		ps[i] = s[start + i];
